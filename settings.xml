@@ -1,0 +1,98 @@
+<?xml version="1.0"?> 
+<settings xmlns="http://maven.apache.org/settings/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	
+	<servers>
+		<!--
+			Entries for snapshot and sandbox repos, if you
+			deploy to them locally.
+		-->
+		<server>
+			<id>pds_snapshots</id>
+			<username>pds_dev</username>
+			<password>pdsRepo4dev</password>
+		</server>
+		<server>
+			<id>pds_sandbox</id>
+			<username>pds_dev</username>
+			<password>pdsRepo4dev</password>
+		</server>
+		<server>
+			<id>qctit_snapshots</id>
+			<username>qctit_dev</username>
+			<password>build4now</password>
+		</server>
+		<server>
+			<id>ems_3rd_party</id>
+			<username>pds_dev</username>
+			<password>pdsRepo4dev</password>
+		</server>
+		<server> 
+			<id>ems_repo</id> 
+			<username>pds_dev</username> 
+			<password>pdsRepo4dev</password> 
+		</server>
+	</servers>
+
+
+	<mirrors>
+		<mirror>
+		      <id>ems_mirror</id>
+		      <name>EMS Maven Mirror</name>
+		      <url>http://maven-ro.qualcomm.com/content/groups/ems_repo</url>
+		      <mirrorOf>*</mirrorOf>
+		</mirror>
+	</mirrors>
+
+
+	<profiles>
+		<profile>
+			<id>ems</id>
+
+			<repositories>
+				<!-- <repository>
+					<id>alm_releases</id>
+					<url>http://maven-ro.qualcomm.com/content/repositories/alm_releases</url>
+					<snapshots>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+				</repository> -->
+				<repository>
+					<id>ems_repo</id>
+					<url>http://maven-ro.qualcomm.com/content/groups/ems_repo</url>					
+					<snapshots>
+						<updatePolicy>always</updatePolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+
+			<properties>
+				<!-- 
+					Many POMs reference these proprties
+					in SVN URLs
+				-->
+				<svnAccount></svnAccount>
+				<svnPassword></svnPassword>
+
+				<!-- 
+				Example property if you are using the
+				Tibco plugin (https://confluence.qualcomm.com/confluence/display/oq/Tibco+Business+Works+Maven+Plugin)
+				-->
+				<tra5.5_home>C:\tibco\tra\5.5</tra5.5_home>
+			</properties>
+		</profile>
+	</profiles>
+
+	<pluginGroups>
+		<!-- For Nexus integrations -->
+		<pluginGroup>org.sonatype.plugins</pluginGroup>
+		<!-- For Clover cmd line usage -->
+		<pluginGroup>com.atlassian.maven.plugins</pluginGroup>
+		<pluginGroup>org.grails</pluginGroup>
+	</pluginGroups>
+
+	<activeProfiles>
+		<activeProfile>ems</activeProfile>
+	</activeProfiles>
+</settings> 
